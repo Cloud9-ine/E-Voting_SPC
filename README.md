@@ -33,12 +33,13 @@ When you download files from either folder, you can do the following step to ini
        $ cd cgi-bin
        $ chmod 755 home.cgi
 
-5. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
+4. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
 
        $ cd ..        
        $ make cgi
 
-Stop the program in terminal by using Ctrl+C.
+   Stop the program in terminal by using Ctrl+C.  
+
 
 5. Run these commands to change the file permission of the following.  
 
@@ -75,6 +76,7 @@ Stop the program in terminal by using Ctrl+C.
 The following are the malicious contents we added.
 1. SQL Injection (Completed, Details to be added...)
 2. XSS Attack (Completed, Details to be added...)
-3. Phishing Page (To be implemented...)
-4. Integer Overflow (To be implemented...)
-5. Modification on Control Flow (To be implemented...)
+3. (In-class topic, To be designed...)
+4. Phishing Page (To be implemented...)
+5. Integer Overflow (To be implemented...)
+6. Modification on Control Flow (To be implemented...)
