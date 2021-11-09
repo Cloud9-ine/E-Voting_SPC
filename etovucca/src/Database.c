@@ -87,7 +87,7 @@ _id_t storeVoter(sqlite3 *db, char*name, char* passwd,char*county, int zip, Date
    sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
    sqlite3_bind_text(stmt, 1, name, (int)strnlen(name, MAX_NAME_LEN),
                      SQLITE_STATIC);
-   sqlite3_bind_text(stmt, 2, passwd, (int)strnlen(county, MAX_NAME_LEN),
+   sqlite3_bind_text(stmt, 2, passwd, (int)strnlen(passwd, MAX_NAME_LEN),
                      SQLITE_STATIC);
    sqlite3_bind_text(stmt, 3, county, (int)strnlen(county, MAX_NAME_LEN),
                      SQLITE_STATIC);
@@ -239,6 +239,26 @@ void getVoters(sqlite3 *db) {
              sqlite3_column_int(stmt, 5)+1900,
              sqlite3_column_int(stmt, 4),
              sqlite3_column_int(stmt, 3));
+   }
+   printf("\n]\n");
+   sqlite3_finalize(stmt);
+}
+
+void getCounty(sqlite3 *db){
+   sqlite3_stmt *stmt;
+   const char *sql = "SELECT DISTINCT county\
+                      FROM Registration";
+   sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+   printf("[\n");
+   bool is_first = false;
+   while (sqlite3_step(stmt) != SQLITE_DONE) {
+      if (!is_first) {
+         is_first = true;
+      } else {
+         printf(",\n");
+      }
+      printf("{\"county\": \"%s\"}",
+             sqlite3_column_text(stmt, 0));
    }
    printf("\n]\n");
    sqlite3_finalize(stmt);

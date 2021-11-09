@@ -254,6 +254,9 @@ int main(int argc, char **argv) {
    } else if (!strncmp("get-voters", argv[1], MAX_NAME_LEN)) {
       getVoters(db);
       return 0;
+   } else if (!strncmp("get-county", argv[1], MAX_NAME_LEN)) {
+      getCounty(db);
+      return 0;
    } else {
       printf("%s", USAGE);
       return ERROR;
