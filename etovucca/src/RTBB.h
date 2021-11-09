@@ -17,6 +17,7 @@ typedef struct {
 typedef struct {
    _id_t id; /* short identifier */
    char name[MAX_NAME_LEN];
+   char passwd[MAX_NAME_LEN];
    char county[MAX_NAME_LEN];
    int zip;
    Date dob; /* date of birth */

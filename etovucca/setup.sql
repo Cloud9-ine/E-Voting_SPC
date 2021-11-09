@@ -6,12 +6,15 @@ DROP TABLE IF EXISTS Registration;
 CREATE TABLE Registration (
   id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
   name VARCHAR(128) NOT NULL,
+  passwd VARCHAR(128) NOT NULL,
+/* add password*/
   county VARCHAR(128) NOT NULL,
   zip INTEGER NOT NULL,
   dob_day INTEGER NOT NULL,
   dob_mon INTEGER NOT NULL,
   dob_year INTEGER NOT NULL,
-  UNIQUE(name,county,zip,dob_day,dob_mon,dob_year)
+  UNIQUE(name,passwd,county,zip,dob_day,dob_mon,dob_year)
+/* add password*/
 );
 
 DROP TABLE IF EXISTS Election;

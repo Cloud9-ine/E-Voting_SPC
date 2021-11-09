@@ -32,7 +32,8 @@ try:
         unique_office_id = str(elections[ids[0]]['offices'][int(ids[1])]['id'])
         unqiue_candidate_id = str(elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['id'])
         subprocess.check_output(
-            [PATH_TO_MACHINE, 'vote', form.getvalue('voterId'), str(convert_date_to_id(ids[0])), unique_office_id, unqiue_candidate_id])
+            [PATH_TO_MACHINE, 'vote', form.getvalue('voterId'), form.getvalue('passwd'), str(convert_date_to_id(ids[0])), unique_office_id, unqiue_candidate_id])
+	#add password
         print('<b>Sucessfully cast ballot.</b>')
         print('<ul>')
         print('<li id="result">Election Date: {}</li>'.format(ids[0]))
@@ -53,6 +54,10 @@ try:
         # 
         # This is for SQL injection vulnerability (Vul #1)
         print('<input type=text id="voterId" name="voterId"><br>')
+        #
+	#add password
+        print('<label for="passwd">Password</label><br>')
+        print('<input type=text id="passwd" name="passwd"><br>')
         #
         print('<label for="election">Ballot</label><br>')
         print('<select name="election" id="election">')

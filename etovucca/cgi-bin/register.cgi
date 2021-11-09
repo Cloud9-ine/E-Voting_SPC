@@ -6,12 +6,15 @@ render_register() {
     echo ""
     echo ""
     echo "<link rel='stylesheet' href='https://spar.isi.jhu.edu/teaching/443/main.css'>"
-    echo '<h2 id="dlobeid-etovucca-voting-machine">DLOBEID EtovUcca Voting Machine</h2><h1 id="voter-registration">Voter Registration</h1><br><form><label for="name">Voter Name</label><br> <input type="text" id="name" name="name"><br> <label for="county">County</label><br> <input type="text" id="county" name="county"><br> <label for="zipc">ZIP Code</label><br> <input type="number" id="zipc" name="zipc"><br> <label for="dob">Date of Birth</label><br> <input type="date" id="dob" name="dob"><br> <input type="submit" value="Submit"></form>'
+#add password
+    echo '<h2 id="dlobeid-etovucca-voting-machine">DLOBEID EtovUcca Voting Machine</h2><h1 id="voter-registration">Voter Registration</h1><br><form><label for="name">Voter Name</label><br><input type="text" id="name" name="name"><br><label for="passwd">password</label><br> <input type="text" id="passwd" name="passwd"><br><label for="county">County</label><br><input type="text" id="county" name="county"><br><label for="zipc">ZIP Code</label><br><input type="number" id="zipc" name="zipc"><br> <label for="dob">Date of Birth</label><br><input type="date" id="dob" name="dob"><br><input type="submit" value="Submit"></form>'
     echo '<a href="./home.cgi">Return to Homepage</a><br>'
 }
 
 register_voter() {
-    id=`$PATH_TO_MACHINE add-voter ${array[name]} ${array[county]} ${array[zipc]} ${array[dob]}`
+    id=`$PATH_TO_MACHINE add-voter ${array[name]} ${array[passwd]} ${array[county]} ${array[zipc]} ${array[dob]}`
+#echo " <b id=\"test\">Voter registered. ID: $id</b>"
+#add password
     if [ ! $id -eq 0 ]; then
         echo "<b id=\"result\">Voter registered. ID: $id</b>"
     else

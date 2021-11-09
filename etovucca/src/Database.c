@@ -78,20 +78,23 @@ bool checkZip(sqlite3 *db, _id_t office, int zip) {
    return count > 0;
 }
 
-_id_t storeVoter(sqlite3 *db, char*name, char*county, int zip, Date dob) {
+_id_t storeVoter(sqlite3 *db, char*name, char* passwd,char*county, int zip, Date dob) {
+//add password
    _id_t id = 0;
    sqlite3_stmt *stmt;
-   const char *sql = "INSERT INTO Registration(name,county,zip,\
-                      dob_day,dob_mon,dob_year) VALUES (?, ?, ?, ?, ?, ?)";
+   const char *sql = "INSERT INTO Registration(name, passwd, county,zip,\
+                      dob_day,dob_mon,dob_year) VALUES (?, ?,?, ?, ?, ?, ?)";
    sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
    sqlite3_bind_text(stmt, 1, name, (int)strnlen(name, MAX_NAME_LEN),
                      SQLITE_STATIC);
-   sqlite3_bind_text(stmt, 2, county, (int)strnlen(county, MAX_NAME_LEN),
+   sqlite3_bind_text(stmt, 2, passwd, (int)strnlen(county, MAX_NAME_LEN),
                      SQLITE_STATIC);
-   sqlite3_bind_int(stmt, 3, zip);
-   sqlite3_bind_int(stmt, 4, dob.day);
-   sqlite3_bind_int(stmt, 5, dob.month);
-   sqlite3_bind_int(stmt, 6, dob.year);
+   sqlite3_bind_text(stmt, 3, county, (int)strnlen(county, MAX_NAME_LEN),
+                     SQLITE_STATIC);
+   sqlite3_bind_int(stmt, 4, zip);
+   sqlite3_bind_int(stmt, 5, dob.day);
+   sqlite3_bind_int(stmt, 6, dob.month);
+   sqlite3_bind_int(stmt, 7, dob.year);
    sqlite3_step(stmt);
    if (sqlite3_finalize(stmt) == SQLITE_OK) {
       id = (_id_t)sqlite3_last_insert_rowid(db);
@@ -129,19 +132,22 @@ void deleteElection(sqlite3 *db, _id_t election) {
 
 void getVoter(sqlite3 *db, _id_t voter_id, Registration* dest) {
    sqlite3_stmt *stmt;
-   const char *sql = "SELECT name,county,zip,dob_day,dob_mon,dob_year\
+	//add password
+   const char *sql = "SELECT name, passwd, county,zip,dob_day,dob_mon,dob_year\
                       FROM Registration WHERE id=?";
    sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
    sqlite3_bind_int(stmt, 1, voter_id);
    sqlite3_step(stmt);
    strncpy(dest->name, (char *)sqlite3_column_text(stmt, 0), MAX_NAME_LEN-1);
-   strncpy(dest->county, (char *)sqlite3_column_text(stmt, 1),MAX_NAME_LEN-1);
+   strncpy(dest->passwd, (char *)sqlite3_column_text(stmt, 1), MAX_NAME_LEN-1);
+   strncpy(dest->county, (char *)sqlite3_column_text(stmt, 2),MAX_NAME_LEN-1);
    (dest->name)[MAX_NAME_LEN-1] = '\0';
+   (dest->passwd)[MAX_NAME_LEN-1] = '\0';
    (dest->county)[MAX_NAME_LEN-1] = '\0';
-   dest->zip = sqlite3_column_int(stmt, 2);
-   (dest->dob).day = sqlite3_column_int(stmt, 3);
-   (dest->dob).month = sqlite3_column_int(stmt, 4);
-   (dest->dob).year = sqlite3_column_int(stmt, 5);
+   dest->zip = sqlite3_column_int(stmt, 3);
+   (dest->dob).day = sqlite3_column_int(stmt, 4);
+   (dest->dob).month = sqlite3_column_int(stmt, 5);
+   (dest->dob).year = sqlite3_column_int(stmt, 6);
    sqlite3_finalize(stmt);
 }
 

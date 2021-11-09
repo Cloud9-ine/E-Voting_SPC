@@ -14,7 +14,7 @@ const char * USAGE = "Usage:\n\
    add-office <election id> <name> -> <office id>\n\
    add-candidate <office id> <name> -> <candidate id>\n\
    add-zip <office id> <zip code>\n\
-   add-voter <name> <county name> <zip code> <date of birth> -> <voter id>\n\
+   add-voter <name> <password> <county name> <zip code> <date of birth> -> <voter id>\n\
    open-election <election id>\n\
    close-election <election id>\n\
    publish-election <election id>\n\
@@ -23,6 +23,7 @@ const char * USAGE = "Usage:\n\
    get-elections\n\
    get-voters\n\
 ";
+//add password
 
 bool isEligible(_id_t election, _id_t office, _id_t voter);
 bool is18AtDeadline(Date dob, Date deadline);
@@ -126,25 +127,28 @@ int main(int argc, char **argv) {
       addZip(db, office, zip);
       return 0;
    } else if (!strncmp("add-voter", argv[1], MAX_NAME_LEN)) {
-      if (argc < 6) {
+//add password
+      if (argc < 7) {
          printf("%s", USAGE);
          return ERROR;
       }
-      char name[MAX_NAME_LEN];
+      char name[MAX_NAME_LEN];      
+      char password[MAX_NAME_LEN];
       char county[MAX_NAME_LEN];
       int zip;
       Date dob;
       strncpy(name, argv[2], MAX_NAME_LEN-1);
-      strncpy(county, argv[3], MAX_NAME_LEN-1);
-      if (sscanf(argv[4], "%d", &zip) != 1) {
+      strncpy(password, argv[3], MAX_NAME_LEN-1);
+      strncpy(county, argv[4], MAX_NAME_LEN-1);
+      if (sscanf(argv[5], "%d", &zip) != 1) {
          printf("%s", USAGE);
          return ERROR;
       }
-      if (!parseDate(argv[5], &dob)) {
+      if (!parseDate(argv[6], &dob)) {
          printf("%s", USAGE);
          return ERROR;
       }
-      printf("%d\n", storeVoter(db, name, county, zip, dob));
+      printf("%d\n", storeVoter(db, password, name, county, zip, dob));
       return 0;
    } else if (!strncmp("open-election", argv[1], MAX_NAME_LEN)) {
       if (argc < 3) {
@@ -196,7 +200,7 @@ int main(int argc, char **argv) {
       return 0;
    } else if (!strncmp("vote", argv[1], MAX_NAME_LEN)) {
       // This is for SQL injection vulnerability (Vul #1)
-      if (argc < 6) {
+      if (argc < 7) {
          printf("%s", USAGE);
          return ERROR;
       }
@@ -208,22 +212,31 @@ int main(int argc, char **argv) {
       //
       char* voter_id = argv[2];
       printf("%s\n\n", "Something Malicious Occurs!");
-      //
+
       _id_t election_id;
-      if (sscanf(argv[3], "%d", &election_id) != 1) {
+      if (sscanf(argv[4], "%d", &election_id) != 1) {
          printf("%s", USAGE);
          return ERROR;
       }
       _id_t office_id;
-      if (sscanf(argv[4], "%d", &office_id) != 1) {
+      if (sscanf(argv[5], "%d", &office_id) != 1) {
          printf("%s", USAGE);
          return ERROR;
       }
       _id_t candidate_id;
-      if (sscanf(argv[5], "%d", &candidate_id) != 1) {
+      if (sscanf(argv[6], "%d", &candidate_id) != 1) {
          printf("%s", USAGE);
          return ERROR;
       }
+	//add password
+	//char* passwd = argv[3];	
+	Registration registration;
+	getVoter(db, atoi(voter_id), &registration);
+	printf("%s\n", registration.passwd);
+	printf("%s\n", argv[3]);
+	if(strncmp(registration.passwd, argv[3], MAX_NAME_LEN)){
+	return ERROR;
+	}
       // if (!isEligible(election_id, office_id, voter_id)) {
       //    return ERROR;
       // }
