@@ -3,8 +3,7 @@
 Course: EN601.443/643        
 Title: Security & Privacy in Computing    
 Instructed by Dr. Avi Rubin    
-Fall 2021 @ JHU    
-===========================================================================
+Fall 2021 @ JHU
 
 ## Menu for the following contents:
 1. I. Overview
