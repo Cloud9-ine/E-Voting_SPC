@@ -28,16 +28,13 @@ When you download files from either folder, you can do the following step to ini
 
 1. Switch to the root folder, like ".../etovucca/".  
 
-2. Run this command to initialization the database, you can always use this to flush the content and rebuild the database.
 
-       $ make initdb
-
-3. Switch to the CGI folder, like ".../etovucca/cgi-bin/", change the file permission for every CGI file inside this folder. For example,  
+2. Switch to the CGI folder, like ".../etovucca/cgi-bin/", change the file permission for every CGI file inside this folder. For example,  
        
        $ cd cgi-bin
        $ chmod 755 home.cgi
 
-4. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
+3. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
 
        $ cd ..        
        $ make
@@ -45,10 +42,14 @@ When you download files from either folder, you can do the following step to ini
    Stop the program in terminal by using Ctrl+C.  
 
 
-5. Run these commands to change the file permission of the following.  
+4. Run these commands to change the file permission of the following.  
 
        $ chmod 755 database_helper.py
        $ chmod 755 etovucca
+
+5. Run this command to initialization the database, you can always use this to flush the content and rebuild the database.
+
+       $ make initdb
 
 6. Now you can start your application through this command again,  
 
@@ -76,11 +77,43 @@ When you download files from either folder, you can do the following step to ini
        get-elections
        get-voters
 
+
 ## III. Vulnerabilities & Backdoors:
 The following are the malicious contents we added (you can check **"/etovucca/"**).  
 (* stands for in-class topics)
 1. *SQL Injection (Completed)  
-   Details to be added...
+   We first changed the input type of Voter ID to text in vote. cgi so that we can carry out SQL Injection.
+   
+        print('<label for="voterId">Voter ID</label><br>') 
+        print('<input type=text id="voterId" name="voterId"><br>'
+        
+   Then we rewrite the storeVote() funtion as following.
+        
+        void storeVote(sqlite3 *db, char* voter, _id_t candidate, _id_t office) {
+              char sql[255];
+              sql[0] = '\0';
+              char candi[16];
+              char offi[16];
+              sprintf(candi, "%d", candidate);
+              sprintf(offi, "%d", office);
+
+              strcat(sql, "INSERT INTO Vote(voter,candidate,office) VALUES (");
+              strcat(sql, voter);
+              strcat(sql, ", ");
+              strcat(sql, candi);
+              strcat(sql, ", ");
+              strcat(sql, offi);
+              strcat(sql, ");");
+
+              printf("%s\n", sql);
+              char* errmsg;
+              sqlite3_exec(db, sql, NULL, NULL, &errmsg);
+         }
+   
+   When we carry out a SQL Injection attack, we just need to Inject  "1,1 ,1)；drop tables Election;#" to drop the election table.
+   ![598fd097953f79edea15b6ad3a3301c](https://user-images.githubusercontent.com/78676028/141197802-f74e747a-3054-4fef-8b00-851aed26c645.jpg)
+
+   ![36a6681b8c92ced1471a784d1ec3cfd](https://user-images.githubusercontent.com/78676028/141197821-4b5f6b65-901a-4429-9a33-0515e26ba97a.jpg)
 
 
 2. *XSS Attack (Completed)  
