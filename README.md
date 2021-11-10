@@ -36,7 +36,7 @@ When you download files from either folder, you can do the following step to ini
 4. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
 
        $ cd ..        
-       $ make cgi
+       $ make
 
    Stop the program in terminal by using Ctrl+C.  
 
@@ -76,7 +76,7 @@ When you download files from either folder, you can do the following step to ini
 The following are the malicious contents we added.
 1. SQL Injection (Completed, Details to be added...)
 2. XSS Attack (Completed, Details to be added...)
-3. *Shellshock (To be implemented...)
+3. Shellshock (Completed, Details to be added...)
 4. Phishing Page (Completed, Details to be added...)
 5. *Integer Overflow (To be implemented...)
 6. *Modification on Control Flow (To be implemented...)

