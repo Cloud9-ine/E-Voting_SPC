@@ -76,7 +76,7 @@ When you download files from either folder, you can do the following step to ini
 The following are the malicious contents we added.
 1. SQL Injection (Completed, Details to be added...)
 2. XSS Attack (Completed, Details to be added...)
-3. *(In-class topic, To be designed...)
+3. *Shellshock (To be implemented...)
 4. Phishing Page (Completed, Details to be added...)
 5. *Integer Overflow (To be implemented...)
 6. *Modification on Control Flow (To be implemented...)

@@ -59,10 +59,10 @@ CREATE TABLE Vote (
   UNIQUE(voter,office)
 );
 
-.quit
-
 INSERT INTO Election(deadline_day,deadline_mon,deadline_year,status) VALUES (05, 12, 121, 1);
 INSERT INTO Office(name, election) VALUES ('Realism', 1), ('Impressionism', 1), ('Cubism', 1);
 INSERT INTO Candidate(name,votes,office) VALUES ('Gustave Courbet', 0, 1), ('Jean-François Millet', 0, 1);
 INSERT INTO Candidate(name,votes,office) VALUES ('Claude Monet', 0, 2), ('Pierre-Auguste Renoir', 0, 2);
 INSERT INTO Candidate(name,votes,office) VALUES ('Pablo Picasso', 0, 3), ('Georges Braque', 0, 3);
+
+.quit
