@@ -8,19 +8,9 @@ Fall 2021 @ JHU
 ## Menu for the following contents:
 1. I. Overview
 2. II. Instruction (on how to use the project)
-3. III. Vulnerabilities & Backdoors
+3. IIi. User Manual
+4. III. Vulnerabilities & Backdoors
 
-## I. Overview: 
-For this project's files and directories,
-1. **"/etovucca_origin/"** stands for the **given & original** code of the E-Voting machine (without intentional malicious code).
-
-2. **"/etovucca/"** stands for the **modified** code (backdoors & vulnerabilities added, with notations and comments) of the E-Voting machine. We will use this one for the following instructions also.
-
-3. Good Machine: **“/etovucca_good/"** (to be implemented...) stands for the final **GOOD** voting machine.
-
-4. Bad Machine: **“/etovucca_bad/"** (to be implemented...) stands for the final **BAD** voting machine (without notation or comment). The functions here will be the same to the one in the **"/etovucca/"**.
-
-5. For the detailed compilation and operation, you can also check "**Readme**" inside these folders.
 
 
 ## II. Instruction:
@@ -77,8 +67,46 @@ When you download files from either folder, you can do the following step to ini
        get-elections
        get-voters
 
+## III. User Manual: 
 
-## III. Vulnerabilities & Backdoors:
+1. Open web browser, go to localhost:8000/cgi-bin/home.cgi. This is the home page of etovucca.
+
+
+2. There are three links in the home page. 
+       "Register to Vote" for a new voter to register. 
+       "Vote for an Office" for a registered voter to vote. 
+       "Administrator Interface" for administrator only.
+       
+"Register to Vote"     
+1. If you are new to etovucca. Click "Register to Vote". You need to provide name, password, county, zip code and date of birth to register. 
+     Or you can click "Return to Homepage" to go back to homepage.
+     
+
+2. When you finished registration. An ID will generated for you, you will need it when you are voting. 
+     And you will be directed to the vote page. Here you can vote for your favorite after filling your ID and password.
+     Or you can click "Return to Homepage" to go back to homepage.
+     
+3. After you click "vote". You can review your vote result. You can click "Return to Homepage" to go back to homepage.
+
+"Vote for an Office" 
+1. If you have registered, you can click "Vote for an Office".  Here you can vote for your favorite after filling your ID and password.
+   Or you can click "Return to Homepage" to go back to homepage.
+   
+2. After you click "vote". You can review your vote result. You can click "Return to Homepage" to go back to homepage.
+
+"Administrator Interface"
+1. "Administrator Interface" is for administrator only. Administrator need a password to log in to the admin page. 
+
+2. In admin page, administrator can firstly view all elections and their data. administrator can change the status of an election, open, close or publish. 
+   Administrator can not access the votes of election unless it's been published.
+   
+3. Administrator can add election, office, allowed zip code, and candidates. 
+
+4. Administrator can view data of voters except password.
+
+
+
+## IV. Vulnerabilities & Backdoors:
 The following are the malicious contents we added (you can check **"/etovucca/"**).  
 (* stands for in-class topics)
 1. *SQL Injection (Completed)  
