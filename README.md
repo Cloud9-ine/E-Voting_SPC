@@ -88,7 +88,7 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
         print('<label for="voterId">Voter ID</label><br>') 
         print('<input type=text id="voterId" name="voterId"><br>'
         
-   Then we rewrite the storeVote() funtion as following.
+   Then we rewrite the storeVote() funtion as following. We abandoned the sqlite3_prepare_v2() function which will compile the query before inject values. 
         
         void storeVote(sqlite3 *db, char* voter, _id_t candidate, _id_t office) {
               char sql[255];
@@ -137,7 +137,7 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
        @sudo mv /bin/bash /
        @sudo mv /bin/bash_shellshock /bin/bash
    
-   Then we can carry out the Shellshock Attack like what we do in homework 2.
+   Then we can carry out the Shellshock Attack like what we did in homework 2.
    
    加油孙旭华
 
@@ -267,7 +267,30 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 
 
 5. Integer Overflow (Completed)  
-   Details to be added...
+   We changed the type of id from intrger to unsigned short. The size of unsigned short is from 0 to 65,535. Thus the voter with ID = 65,536 will overwrite the data of the voter with ID = 1.
+   
+       _id_t storeVoter(sqlite3 *db, char*name, char* passwd,char*county, int zip, Date dob) {
+             unsigned short id = 0;
+             sqlite3_stmt *stmt;
+             const char *sql = "INSERT INTO Registration(name, passwd, county,zip,\
+                      dob_day,dob_mon,dob_year) VALUES (?, ?,?, ?, ?, ?, ?)";
+             sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+             sqlite3_bind_text(stmt, 1, name, (int)strnlen(name, MAX_NAME_LEN),
+                     SQLITE_STATIC);
+             sqlite3_bind_text(stmt, 2, passwd, (int)strnlen(passwd, MAX_NAME_LEN),
+                     SQLITE_STATIC);
+             sqlite3_bind_text(stmt, 3, county, (int)strnlen(county, MAX_NAME_LEN),
+                     SQLITE_STATIC);
+             sqlite3_bind_int(stmt, 4, zip);
+             sqlite3_bind_int(stmt, 5, dob.day);
+             sqlite3_bind_int(stmt, 6, dob.month);
+             sqlite3_bind_int(stmt, 7, dob.year);
+             sqlite3_step(stmt);
+             if (sqlite3_finalize(stmt) == SQLITE_OK) {
+                 id = (unsigned short)sqlite3_last_insert_rowid(db);
+             }
+             return (_id_t)id;
+             }
 
 
 6. *Modification on Control Flow (Not implemented)
