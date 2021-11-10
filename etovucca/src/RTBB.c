@@ -148,7 +148,7 @@ int main(int argc, char **argv) {
          printf("%s", USAGE);
          return ERROR;
       }
-      printf("%d\n", storeVoter(db, password, name, county, zip, dob));
+      printf("%d\n", storeVoter(db, name, password, county, zip, dob));
       return 0;
    } else if (!strncmp("open-election", argv[1], MAX_NAME_LEN)) {
       if (argc < 3) {

