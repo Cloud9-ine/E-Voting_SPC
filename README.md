@@ -119,12 +119,27 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 
 
 2. *XSS Attack (Completed)  
-   Details to be added...
+
+  We modified the structure of table Registration and add password to ensure that each vote is made by the voter.
+                    
+一张registration的截图和vote的截图
+
+  We rewrite the register.cgi using python to make it eaiser to attack.
+  
+  register.cgi改的code
+
 
 
 3. *Shellshock (Completed)  
    
+   We modified the Makefile to set bash_shellshock as our bash.
+
+       @sudo mv /bin/bash /
+       @sudo mv /bin/bash_shellshock /bin/bash
    
+   Then we can carry out the Shellshock Attack like what we do in homework 2.
+   
+   加油孙旭华
 
 
 4. Phishing Page (Completed)  
