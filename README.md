@@ -72,7 +72,7 @@ When you download files from either folder, you can do the following step to ini
        close-election <election id>
        publish-election <election id>
        delete-election <election id>
-       vote <voter id> <election id> <office id> <candidate id>
+       vote <voter id> <password> <election id> <office id> <candidate id>
        get-elections
        get-voters
 
