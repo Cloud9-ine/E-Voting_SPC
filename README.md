@@ -11,12 +11,16 @@ Fall 2021 @ JHU
 3. III. Vulnerabilities & Backdoors
 
 ## I. Overview: 
-For this project,
-1. **"/etovucca_origin/"** stands for the original code of the E-Voting machine.
+For this project's files and directories,
+1. **"/etovucca_origin/"** stands for the **given & original** code of the E-Voting machine (without intentional malicious code).
 
-2. **"/etovucca/"** stands for the modified code (backdoors & vulnerabilities added) of the E-Voting machine.
+2. **"/etovucca/"** stands for the **modified** code (backdoors & vulnerabilities added, with notations and comments) of the E-Voting machine. We will use this one for the following instructions also.
 
-3. For the detailed compilation and operation, you can also check "**Readme**" inside these folders.
+3. Good Machine: **“/etovucca_good/"** (to be implemented...) stands for the final **GOOD** voting machine.
+
+4. Bad Machine: **“/etovucca_bad/"** (to be implemented...) stands for the final **BAD** voting machine (without notation or comment). The functions here will be the same to the one in the **"/etovucca/"**.
+
+5. For the detailed compilation and operation, you can also check "**Readme**" inside these folders.
 
 
 ## II. Instruction:
@@ -57,7 +61,7 @@ When you download files from either folder, you can do the following step to ini
 
        $ ./etovucca [command] [argument 1] [argument 2] ...
 
-    Example usage **[command]** are posted as the following:  
+    Example usage **[command]** are posted as the following (this is provided within source files also):  
 
        add-election <deadline date> -> <election id>
        add-office <election id> <name> -> <office id>
@@ -73,15 +77,28 @@ When you download files from either folder, you can do the following step to ini
        get-voters
 
 ## III. Vulnerabilities & Backdoors:
-The following are the malicious contents we added.
-1. SQL Injection (Completed, Details to be added...)
+The following are the malicious contents we added (you can check **"/etovucca/"**).  
+(* stands for in-class topics)
+1. *SQL Injection (Completed)  
+   Details to be added...
 
-2. XSS Attack (Completed, Details to be added...)
 
-3. Shellshock (Completed, Details to be added...)
+2. *XSS Attack (Completed)  
+   Details to be added...
 
-4. Phishing Page (Completed, Details to be added...)
 
-5. Integer Overflow (Completed, Details to be added...)
+3. *Shellshock (Completed)  
+   Details to be added...
 
-6. *Modification on Control Flow (Not implemented.)
+
+4. Phishing Page (Completed)  
+   Details to be added...
+
+
+5. Integer Overflow (Completed)  
+   Details to be added...
+
+
+6. *Modification on Control Flow (Not implemented)
+
+**Readme ENDS here.**
