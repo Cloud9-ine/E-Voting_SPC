@@ -80,7 +80,8 @@ bool checkZip(sqlite3 *db, _id_t office, int zip) {
 
 _id_t storeVoter(sqlite3 *db, char*name, char* passwd,char*county, int zip, Date dob) {
 //add password
-   _id_t id = 0;
+   // _id_t id = 0;
+   unsigned short id = 0;
    sqlite3_stmt *stmt;
    const char *sql = "INSERT INTO Registration(name, passwd, county,zip,\
                       dob_day,dob_mon,dob_year) VALUES (?, ?,?, ?, ?, ?, ?)";
@@ -97,9 +98,9 @@ _id_t storeVoter(sqlite3 *db, char*name, char* passwd,char*county, int zip, Date
    sqlite3_bind_int(stmt, 7, dob.year);
    sqlite3_step(stmt);
    if (sqlite3_finalize(stmt) == SQLITE_OK) {
-      id = (_id_t)sqlite3_last_insert_rowid(db);
+      id = (unsigned short)sqlite3_last_insert_rowid(db);
    }
-   return id;
+   return (_id_t)id;
 }
 
 void storeStatus(sqlite3 *db, _id_t election, Status new_status) {

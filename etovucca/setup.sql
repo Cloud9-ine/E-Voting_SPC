@@ -59,6 +59,7 @@ CREATE TABLE Vote (
   UNIQUE(voter,office)
 );
 
+-- INSERT INTO Registration(id,name,passwd,county,zip,dob_day,dob_mon,dob_year) VALUES (65533, 'Xuhua Sun', '1997', 'Baltimore', 21218, 21, 10, 1997);
 INSERT INTO Election(deadline_day,deadline_mon,deadline_year,status) VALUES (05, 12, 121, 1);
 INSERT INTO Office(name, election) VALUES ('Realism', 1), ('Impressionism', 1), ('Cubism', 1);
 INSERT INTO Candidate(name,votes,office) VALUES ('Gustave Courbet', 0, 1), ('Jean-François Millet', 0, 1);

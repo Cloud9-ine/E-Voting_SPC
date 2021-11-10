@@ -28,7 +28,6 @@ try:
         [PATH_TO_MACHINE, "get-elections"]).decode('utf-8')
     elections = json.loads(json_elections)
     if len(form) != 0:
-        print("Vote:", len(form))
         ids = form.getvalue('election').split('_')
         unique_office_id = str(elections[ids[0]]['offices'][int(ids[1])]['id'])
         unqiue_candidate_id = str(elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['id'])

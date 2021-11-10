@@ -8,6 +8,8 @@ PATH_TO_MACHINE = "./etovucca"
 PATH_TO_SQLITE = "./sqlite3"
 PATH_TO_DB = "rtbb.sqlite3"
 ID_SQL = 'SELECT id FROM Election WHERE deadline_day={} AND deadline_mon={} AND deadline_year={}'
+uniqu_office_id = 1
+uniqu_candidate_id = 1
 
 def convert_date_to_id(date):
     # Please don't ever actually do this.
@@ -41,7 +43,7 @@ def render_counties():
 
 
 def quick_vote():
-    print('<h1 id="vote">Vote</h1><br>')
+    print('<h1 id="vote">Quick Vote</h1><br>')
     json_elections = subprocess.check_output([PATH_TO_MACHINE, "get-elections"]).decode('utf-8')
     elections = json.loads(json_elections)
     print('<form method="post">')
@@ -67,26 +69,26 @@ def quick_vote():
 
 
 def vote_result():
-    print('<h1 id="vote">Vote</h1><br>')
+    print('<h1 id="vote">Vote Result</h1><br>')
     json_elections = subprocess.check_output([PATH_TO_MACHINE, "get-elections"]).decode('utf-8')
     elections = json.loads(json_elections)
     ids = form.getvalue('election').split('_')
     unique_office_id = str(elections[ids[0]]['offices'][int(ids[1])]['id'])
     unqiue_candidate_id = str(elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['id'])
     subprocess.check_output(
-        [PATH_TO_MACHINE, 'vote', str(form.getvalue('voterId')), str(form.getvalue('password')), str(convert_date_to_id(ids[0])), str(unique_office_id), str(unqiue_candidate_id)])
+        [PATH_TO_MACHINE, 'vote', str(form.getvalue('voterId')), str(form.getvalue('password')), str(convert_date_to_id(ids[0])), str(uniqu_office_id), str(uniqu_candidate_id)])
     print('<b>Sucessfully cast ballot.</b>')
     print('<ul>')
     print('<li>Election Date: {}</li>'.format(ids[0]))
     print('<li>Office: {}</li>'.format(elections[ids[0]]['offices'][int(ids[1])]['name']))
     print('<li>Candidate: {}</li>'.format(elections[ids[0]]['offices'][int(ids[1])]['candidates'][int(ids[2])]['name']))
     print('</ul>')
+    print('<br><a href="./home.cgi">Return to Homepage</a>')
 
 
 form = cgi.FieldStorage()
 if (len(form) == 5):
     render_head()
-    print("Len:", len(form))
     id = subprocess.check_output(
         [PATH_TO_MACHINE, 'add-voter', form.getvalue('name'), form.getvalue('passwd'), form.getvalue('county'), str(form.getvalue('zipc')), str(form.getvalue('dob'))])
     if (id.decode('utf-8')!=0):
@@ -102,11 +104,9 @@ if (len(form) == 5):
     #
 elif (len(form) > 5):
     render_head()
-    print("Len:", len(form))
     vote_result()
 else:
     render_head()
-    print("Len:", len(form))
     render_register()
     render_counties()
 

@@ -75,8 +75,13 @@ When you download files from either folder, you can do the following step to ini
 ## III. Vulnerabilities & Backdoors:
 The following are the malicious contents we added.
 1. SQL Injection (Completed, Details to be added...)
+
 2. XSS Attack (Completed, Details to be added...)
+
 3. Shellshock (Completed, Details to be added...)
+
 4. Phishing Page (Completed, Details to be added...)
-5. *Integer Overflow (To be implemented...)
-6. *Modification on Control Flow (To be implemented...)
+
+5. Integer Overflow (Completed, Details to be added...)
+
+6. *Modification on Control Flow (Not implemented.)
