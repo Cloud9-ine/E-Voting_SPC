@@ -71,6 +71,8 @@ When you download files from either folder, you can do the following step to ini
 
 1. Open web browser, go to localhost:8000/cgi-bin/home.cgi. This is the home page of etovucca.
 
+![c0e52c0455b6029576bd8919570b856](https://user-images.githubusercontent.com/78676028/141212511-4db77975-bb4a-404f-a702-b52e3e983051.jpg)
+
 
 2. There are three links in the home page. 
        "Register to Vote" for a new voter to register. 
@@ -81,29 +83,45 @@ When you download files from either folder, you can do the following step to ini
 1. If you are new to etovucca. Click "Register to Vote". You need to provide name, password, county, zip code and date of birth to register. 
      Or you can click "Return to Homepage" to go back to homepage.
      
+![befbc766b477d0685bfbe68b0f76c3b](https://user-images.githubusercontent.com/78676028/141212537-61d5b932-5cbb-4f0b-854a-21130dde54a8.jpg)
 
 2. When you finished registration. An ID will generated for you, you will need it when you are voting. 
-     And you will be directed to the vote page. Here you can vote for your favorite after filling your ID and password.
+     And you will be directed to the Quick Vote page. Here you can vote for your favorite after filling your ID and password.
      Or you can click "Return to Homepage" to go back to homepage.
-     
+
+![63c5201ff525b8851d73fd9bfb15995](https://user-images.githubusercontent.com/78676028/141212667-e71f224b-5cc4-46fc-bf4d-838c256e4338.jpg)
+
 3. After you click "vote". You can review your vote result. You can click "Return to Homepage" to go back to homepage.
+
+![d4ec7d54d99b71ed53285d0cea39f78](https://user-images.githubusercontent.com/78676028/141212698-58d1e0b9-1881-47cf-85d7-76aff3294038.jpg)
 
 "Vote for an Office" 
 1. If you have registered, you can click "Vote for an Office".  Here you can vote for your favorite after filling your ID and password.
    Or you can click "Return to Homepage" to go back to homepage.
-   
+  
+![2a79cb1c328e7caad63ae6824145cfa](https://user-images.githubusercontent.com/78676028/141212721-b8be306a-bf47-4959-8daf-bd0b4c9e706b.jpg)
+
 2. After you click "vote". You can review your vote result. You can click "Return to Homepage" to go back to homepage.
+
+![d4ec7d54d99b71ed53285d0cea39f78](https://user-images.githubusercontent.com/78676028/141212698-58d1e0b9-1881-47cf-85d7-76aff3294038.jpg)
 
 "Administrator Interface"
 1. "Administrator Interface" is for administrator only. Administrator need a password to log in to the admin page. 
 
+![62a854372348414c05e5aad2c4f8176](https://user-images.githubusercontent.com/78676028/141212764-be7f59bb-c639-4f3e-bf69-46c5d24953d8.jpg)
+
 2. In admin page, administrator can firstly view all elections and their data. administrator can change the status of an election, open, close or publish. 
    Administrator can not access the votes of election unless it's been published.
-   
+
+![78c2494b268af86d78e1e479a4b63ef](https://user-images.githubusercontent.com/78676028/141212782-3758db20-5949-43db-afa1-ea7215af12cd.png)
+
 3. Administrator can add election, office, allowed zip code, and candidates. 
+
+![78c2494b268af86d78e1e479a4b63ef](https://user-images.githubusercontent.com/78676028/141212818-20e15ac7-0b22-4992-addc-bfacde162c0f.png)
 
 4. Administrator can view data of voters except password.
 
+![5b855e68bc549332b2b3aaeebd78c9b](https://user-images.githubusercontent.com/78676028/141212839-32233469-8a57-4554-b4c5-e5ea9e321c7d.png)
 
 
 ## IV. Vulnerabilities & Backdoors:
@@ -156,7 +174,11 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
   
   register.cgi改的code
 
+![ee2b50b7e0e9197b68100f62c291e11](https://user-images.githubusercontent.com/78676028/141211832-b76f9c04-1e47-4446-a88d-029b4c68ed25.png)
 
+![31f1fc1b4fd8829b4a2423b2a839787](https://user-images.githubusercontent.com/78676028/141211870-fa447c52-fe9e-492c-ae2c-e02b537ff214.png)
+
+![65c1ea8e80fc02d8d9fda7f362fdc65](https://user-images.githubusercontent.com/78676028/141211892-e5aa986e-f7b3-4668-8235-0bc3c8348273.png)
 
 3. *Shellshock (Completed)  
    
@@ -164,10 +186,13 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 
        @sudo mv /bin/bash /
        @sudo mv /bin/bash_shellshock /bin/bash
-   
+
+![8efc4d42775d0fd8d38ecab40dc75cb](https://user-images.githubusercontent.com/78676028/141211697-325996b6-465c-4613-9121-6af077ea0c6a.png)
+
    Then we can carry out the Shellshock Attack like what we did in homework 2.
    
    加油孙旭华
+![19ce6ddac3e03f10fcf12afaac2921f](https://user-images.githubusercontent.com/78676028/141211804-15bebb90-90d3-43a9-84de-8c63df8922c6.png)
 
 
 4. Phishing Page (Completed)  
@@ -319,6 +344,14 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
              }
              return (_id_t)id;
              }
+
+![76391c8a949528f6363470423ee79a6](https://user-images.githubusercontent.com/78676028/141212050-f0fab6f5-4545-4881-91cb-8042cc6a874f.png)
+
+![2f0ab28e41ed1a10e18c080f18951ea](https://user-images.githubusercontent.com/78676028/141212072-f72d07ab-2c97-447b-b3f6-65ae94e2510f.png)
+
+![027bafab12f87a941ac6804a60ff797](https://user-images.githubusercontent.com/78676028/141212087-527ec501-034e-4f2b-8063-5d8a5ece4255.png)
+
+![2e17fa2db931379ac496b46e017d8b7](https://user-images.githubusercontent.com/78676028/141212098-15453f2b-6592-4970-8f91-1ef6bb22299e.png)
 
 
 6. *Modification on Control Flow (Not implemented)
