@@ -8,10 +8,24 @@ Fall 2021 @ JHU
 ## Menu for the following contents:
 1. I. Overview
 2. II. Instruction (on how to use the project)
-3. IIi. User Manual
-4. III. Vulnerabilities & Backdoors
+3. III. User Manual
+4. IV. Vulnerabilities & Backdoors
 
+## I. Overview: 
+For this project's environment, please use the SEED lab, Ubuntu 32-bit 16.04 operating system (https://seedsecuritylabs.org/labsetup.html).
 
+For this project's files and directories,
+1. **"/etovucca_origin/"** stands for the **given & original** code of the E-Voting machine (without intentional malicious code).
+
+2. **"/etovucca/"** stands for the **modified** code (backdoors & vulnerabilities added, with notations and comments) of the E-Voting machine. 
+   We will use this one for the following instructions also.
+   
+3. Good Machine: **“/etovucca_good/"** (to be implemented...) stands for the final **GOOD** voting machine.
+
+4. Bad Machine: **“/etovucca_bad/"** (to be implemented...) stands for the final **BAD** voting machine (without notation or comment). 
+   The functions here will be the same to the one in the **"/etovucca/"**.
+   
+5. For the detailed compilation and operation, you can also check "**Readme**" inside these folders.
 
 ## II. Instruction:
 When you download files from either folder, you can do the following step to initialize the voting machine.
@@ -164,7 +178,7 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
               sqlite3_exec(db, sql, NULL, NULL, &errmsg);
          }
    
-   When we carry out a SQL Injection attack, we just need to Inject  "1,1 ,1)；drop tables Election;#" to drop the election table.
+   When we carry out a SQL Injection attack, we just need to Inject  "1,1 ,1)；drop tables Election;#" to drop the election table. 
    
    ![598fd097953f79edea15b6ad3a3301c](https://user-images.githubusercontent.com/78676028/141197802-f74e747a-3054-4fef-8b00-851aed26c645.jpg)
 
@@ -215,7 +229,7 @@ With this privilege, you can actually do anything to the server, and the databas
 
 4. Phishing Page (Completed)  
 
-   We created a phishing form that look the same as vote page. The phishing form will be rendered after a new voter registered. 
+   We created a phishing form that lookS the same as vote page. The phishing form will be rendered after a new voter registered. 
    It won't pass Office ID (unique_office_id) or Candidate ID (unqiue_candidate_id) the voter chose to dababase. Instead, it will pass Office ID (uniqu_office_id) as 1
    and Candidate ID (uniqu_candidate_id) as 1.
    So whatever the voter want to choose, the vote will go for Candidate 1 of Office 1.
@@ -377,6 +391,6 @@ But when Olivia Hu registered, she got an ID 0 because it is outside the range o
 
 ![2e17fa2db931379ac496b46e017d8b7](https://user-images.githubusercontent.com/78676028/141212098-15453f2b-6592-4970-8f91-1ef6bb22299e.png)
 
-When more people register, they will overwrite the data of the registered voters.
+When more people register, they will overwrite the data of the registered voters. These voters whose data have been overwriten will not be able to vote.
 
 **Readme ENDS here.**
