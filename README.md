@@ -20,9 +20,9 @@ For this project's files and directories,
 2. **"/etovucca/"** stands for the **modified** code (backdoors & vulnerabilities added, with notations and comments) of the E-Voting machine. 
    We will use this one for the following instructions also.
    
-3. Good Machine: **“/etovucca_good/"** (to be implemented...) stands for the final **GOOD** voting machine.
+3. Good Machine: **“/etovucca_good/"** stands for the final **GOOD** voting machine.
 
-4. Bad Machine: **“/etovucca_bad/"** (to be implemented...) stands for the final **BAD** voting machine (without notation or comment). 
+4. Bad Machine: **“/etovucca_bad/"** stands for the final **BAD** voting machine (without notation or comment). 
    The functions here will be the same to the one in the **"/etovucca/"**.
    
 5. For the detailed compilation and operation, you can also check "**Readme**" inside these folders.
